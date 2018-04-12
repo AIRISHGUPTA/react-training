@@ -5,6 +5,7 @@ import {fetchMoviesFromApi,changeRating} from '../actions/moviesActions'
 import '../styles/homePage.css'
 import star1 from '../styles/star1.jpeg'
 import star2 from '../styles/star2.png'
+import {MovieActions} from '../actions/moviesActions'
 class HomePage extends React.Component
 {
     componentDidMount()
@@ -31,7 +32,7 @@ class HomePage extends React.Component
                       return {color:'black',fontSize:'20px'};
                     }
                 }
-                return <div className="card" style={{display:'flex'}}>
+                return <div key={movies[key].id} className="card" style={{display:'flex'}}>
                             <div id="image" style={{background:`url(${movies[key].image})`}}>
                             </div>
                             <div id="displayContent">
@@ -73,8 +74,8 @@ function mapStateToProps({moviesStore})
 function mapDispatchToProps(dispatch)
 {
   return {
-    fetchMoviesCall:()=>{dispatch(fetchMoviesFromApi())},
-    changeRatingInStore:(id,value)=>{dispatch(changeRating(id,value))}
+    fetchMoviesCall:()=>{dispatch(MovieActions.fetchMoviesFromApi())},
+    changeRatingInStore:(id,value)=>{dispatch(MovieActions.changeRating(id,value))}
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(HomePage);

@@ -1,14 +1,19 @@
 import * as API from '../utils/api'
-import * as types from '../constants/actionTypes'
-const fetchMoviesFromApi = () => (dispatch,getState) => {
-  API.getMovies().then((movies)=>{dispatch(storeMovies(movies))});
+
+const MovieActionTypes ={
+  STORE_MOVIES : "MOVIES/STORE_MOVIES",
+  CHANGE_RATING : "MOVIES?CHANGE_RATING"
+}
+const MovieActions={
+  fetchMoviesFromApi : () => (dispatch,getState) => {
+    API.getMovies().then((movies)=>{dispatch(MovieActions.storeMovies(movies))});
+  },
+  storeMovies : (movies) => {
+    return {type:MovieActionTypes.STORE_MOVIES,movies};
+  },
+  changeRating : (id,rating) => {
+    return {type:MovieActionTypes.CHANGE_RATING,id,rating}
+  }
 }
 
-const storeMovies = (movies) => {
-  return {type:types.STORE_MOVIES,movies};
-}
-
-const changeRating = (id,rating) => {
-  return {type:types.CHANGE_RATING,id,rating}
-}
-export {fetchMoviesFromApi,storeMovies,changeRating};
+export {MovieActionTypes,MovieActions};

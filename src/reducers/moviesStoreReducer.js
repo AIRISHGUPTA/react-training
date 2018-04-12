@@ -1,14 +1,13 @@
+import {MovieActionTypes} from '../actions/moviesActions'
 
-import * as types from '../constants/actionTypes'
-export default function moviesStore(state={},action)
+function moviesStore(state={},action)
 {
   switch(action.type)
   {
-    case types.STORE_MOVIES:
+    case MovieActionTypes.STORE_MOVIES:
       state = {movies:action.movies};
       break;
-    case types.CHANGE_RATING:
-      //state = {...state,['movies']:{...['movies'],[action.id]:{rating:action.rating}}};
+    case MovieActionTypes.CHANGE_RATING:
       state = {...state,['movies']:{
         ...state['movies'],
         [action.id]:{
@@ -20,3 +19,5 @@ export default function moviesStore(state={},action)
   }
   return state;
 }
+
+export default moviesStore;
