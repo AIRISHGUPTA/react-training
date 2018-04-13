@@ -6,7 +6,7 @@ function moviesStore(state={},action)
   {
     case MovieActionTypes.STORE_MOVIES:
       return {movies:action.movies};
-      break;
+
     case MovieActionTypes.CHANGE_RATING:
       return {...state,['movies']:{
         ...state['movies'],
@@ -15,7 +15,6 @@ function moviesStore(state={},action)
           rating:action.rating
         }
       }}
-      break;
   }
 }
 
