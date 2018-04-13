@@ -5,10 +5,10 @@ function moviesStore(state={},action)
   switch(action.type)
   {
     case MovieActionTypes.STORE_MOVIES:
-      state = {movies:action.movies};
+      return {movies:action.movies};
       break;
     case MovieActionTypes.CHANGE_RATING:
-      state = {...state,['movies']:{
+      return {...state,['movies']:{
         ...state['movies'],
         [action.id]:{
           ...state['movies'][action.id],
@@ -17,7 +17,6 @@ function moviesStore(state={},action)
       }}
       break;
   }
-  return state;
 }
 
 export default moviesStore;
